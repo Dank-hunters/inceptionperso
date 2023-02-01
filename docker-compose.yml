@@ -1,0 +1,46 @@
+version: "2.15.1"
+
+volumes:
+
+        wp_volume:
+                name: wp_volume
+                driver: local
+                driver_opts:
+                        type: none
+                        o: bind
+                        device: /home/cguiot/data/inception_wp
+
+services:
+
+        nginx:
+                container_name: nginx
+                image: nginx
+                build: ./requirements/nginx
+                depends_on:
+                        - wordpress
+                env_file: 
+                        - .env
+                domainname: ${DOMAIN_NAME}
+                restart: on-failure
+                ports:
+                        - 443:443
+                networks:
+                        - inception-network
+                volumes:
+                        - wp_volume:/var/www
+
+
+        wordpress:
+                container_name : wordpress
+                image : wordpress
+                build : ./requirements/wordpress
+                env_file : 
+                        - .env
+                domainname : $(DOMAIN_NAME)
+                restart : on-failure
+                volumes:
+                        - wp_volume:/var/www
+
+networks:
+        inception-network:
+                driver: bridge
