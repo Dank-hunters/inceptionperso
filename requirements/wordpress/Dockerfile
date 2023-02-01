@@ -12,8 +12,6 @@ RUN apt-get upgrade -y \
 && tar -xzvf latest-fr_FR.tar.gz \
 && mv wordpress wp 
 
-
-
 RUN apt-get install -y postfix
 
 RUN	apt-get install -y curl
