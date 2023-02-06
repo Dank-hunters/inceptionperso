@@ -1,5 +1,6 @@
 FROM debian:buster
 
+#expoe 9000 for communication with nginx
 EXPOSE 9000
 
 RUN apt-get upgrade -y \
@@ -14,6 +15,8 @@ RUN apt-get upgrade -y \
 
 RUN apt-get install -y postfix
 
+
+#install php for wordpress 
 RUN	apt-get install -y curl
 RUN apt-get -y install php7.3 php7.3-fpm php7.3-mysql php-common php7.3-json php7.3-readline 
 

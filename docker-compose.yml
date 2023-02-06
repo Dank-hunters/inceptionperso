@@ -27,7 +27,7 @@ services:
                 build : ./requirements/mariadb/
                 env_file : 
                         - .env
-                domainname : $(DOMAIN_NAME)
+                domainname : ${DOMAIN_NAME}
                 restart : on-failure
                 networks:
                         - inception-network
@@ -43,7 +43,7 @@ services:
                         - mariadb
                 env_file : 
                         - .env
-                domainname : $(DOMAIN_NAME)
+                domainname : ${DOMAIN_NAME}
                 restart : on-failure
                 networks:
                         - inception-network
